@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+        integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+        crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+        integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+        crossorigin=""></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"
+        integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
+    <title>Tweet Locator</title>
+</head>
+
+<body>
+    <div id="mapid" style="width: 100vw; height: 100vh;"></div>  
+</body>
+<script>
+    // Socket Init
+    const socket = io();
+   
+    // Using OpenStreeMap Layer
+    const mytiles = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+    });
+
+    // Initialise an empty map
+    const map = L.map('mapid');
+    
+    function onEachFeature(feature, layer) {
+        // Add popup to each marker
+        if (feature.properties && feature.properties.text) {
+            layer.bindPopup(feature.properties.text + "<br>" +
+                feature.properties.created_at + "<br>" +
+                feature.properties.user);
+        }
+    }
+
+    let layerGroup = L.layerGroup().addTo(map);
+    let myStyle = {
+            radius: 2,
+            fillColor: "red",
+            color: "red",
+            weight: 1,
+            opacity: 1,
+            fillOpacity: 1
+        };
+
+    socket.on('addMarker', tweet => {
+        // Create a circleMarker element for each tweet
+        // Each tweet will be represented by a nice red dot
+        let geojson = L.geoJson(tweet, {
+            pointToLayer: function (feature, latlng) {
+                return L.circleMarker(latlng, myStyle);
+            },
+            onEachFeature: onEachFeature
+        });
+        geojson.addTo(layerGroup)
+    })
+   
+    // Add the tiles to the map, and initialise the view in the middle of the planet
+    map.addLayer(mytiles).setView([0, 0], 2);
+</script>
+</html>
