@@ -39,4 +39,6 @@ if __name__ == '__main__':
     """
 ```
 
+![](media/tweetlocator.gif)
+
 **Enjoy it!!**
