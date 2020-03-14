@@ -81,7 +81,7 @@ def home():
 
 
 if __name__ == '__main__':
-    tags = ["#python", "programming", "flask"]   
+    tags = ["#coronavirus"]   
     # Create and start thread for get the tweets
     Thread(target=start_filter, args=(tags,)).start()
     # Start the server
