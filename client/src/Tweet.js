@@ -3,6 +3,18 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { DateTime } from "luxon";
 
+/**
+ * @param {object} props
+ * @param {object[]} props.tweets
+ * @param {string} props.tweets[].type
+ * @param {object} props.tweets[].properties
+ * @param {string} props.tweets[].properties.username
+ * @param {string} props.tweets[].properties.text
+ * @param {string} props.tweets[].properties.created_at
+ * @param {object} props.tweets[].geometry
+ * @param {string} props.tweets[].geometry.type
+ * @param {[number, number]} props.tweets[].geometry.coordinates
+ */
 function Tweet(props) {
   const { tweets } = props;
 
