@@ -1,0 +1,225 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f8f8f8 !important;
+}
+
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  max-height: 850px;
+  border-radius: 30px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.leaflet-left .leaflet-control {
+  margin-left: 25px;
+}
+
+.leaflet-top .leaflet-control {
+  margin-top: 25px;
+}
+
+.main-container {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 25px;
+  height: calc(100vh - 56px);
+  width: 100vw;
+  display: grid;
+  max-width: 1600px;
+  justify-content: center;
+  align-items: center;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 10px;
+  background-color: #f8f9fa;
+}
+
+.info {
+  width: 100%;
+  height: 100%;
+  max-height: 850px;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-bar,
+.tweet,
+.search-terms {
+  padding: 15px;
+  border-radius: 30px;
+  width: 100%;
+  flex: 0.5;
+  display: flex;
+  justify-content: center;
+}
+
+.search-terms {
+  padding-top: 0;
+  flex-grow: 0.5;
+}
+
+.search-bar {
+  padding-top: 0;
+}
+
+.tweet {
+  flex: 6;
+  padding-bottom: 5px;
+}
+
+.search-bar .input-group {
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(232, 232, 232, 0.8);
+  border-radius: 15px;
+  height: 50px;
+  width: 95%;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.input-group .form-control,
+.input-group .btn {
+  background-color: transparent;
+  color: black;
+  border-radius: 10px;
+  border: none;
+  display: flex;
+  align-items: center;
+}
+
+.input-group .form-control {
+  padding-left: 0;
+}
+
+.input-group .form-control:hover,
+.input-group .btn:hover {
+  background-color: transparent;
+  color: black;
+}
+
+.input-group .btn:hover {
+  background-color: rgba(248, 248, 248, 1);
+}
+
+.input-group .form-control:focus,
+.input-group .btn:focus,
+.input-group .btn:active:focus {
+  background-color: transparent;
+  color: black;
+  outline: none;
+  box-shadow: none;
+  border: none;
+}
+
+.terms-group {
+  display: grid;
+  align-items: flex-start;
+  grid-template-columns: repeat(5, minmax(5px, 1fr));
+  gap: 5px;
+  width: 95%;
+  /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
+  border-radius: 15px;
+  padding: 5px;
+}
+
+.terms {
+  background-color: #1da1f2;
+  font-size: 0.7rem;
+  height: 30px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 8px;
+  color: #fff;
+}
+
+.terms .remove-term {
+  padding-left: 8px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 0.6rem;
+  font-weight: bold;
+}
+
+.terms span {
+  text-align: center;
+}
+
+.tweet-group {
+  width: 95%;
+  max-height: 540px;
+  overflow-y: auto;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 25px;
+}
+
+.tweet-group .card {
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+}
+
+.tweet-group .card h5 {
+  font-size: 1rem;
+}
+
+.tweet-group .card .btn {
+  color: #fff;
+  background-color: #1da1f2;
+  border-color: #1da1f2;
+  font-size: 0.7rem;
+}
+
+.tweet-group .card .btn:focus,
+.tweet-group .card .btn:focus:active {
+  background-color: #1da1f2;
+  border-color: #1da1f2;
+  box-shadow: none;
+}
+
+.tweet-group .card .btn:hover {
+  outline: none;
+  background-color: #0f77cc;
+}
+
+.popup-toast .toast {
+  box-shadow: none;
+  border: none;
+  font-size: 0.8rem;
+}
+
+.navbar {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  z-index: 1;
+}
+
+.navbar-nav {
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar-nav a {
+  color: #000 !important;
+  display: flex;
+  align-items: center;
+}
+
+@media screen and (min-height: 880px) {
+  .tweet-group {
+    max-height: 675px;
+  }
+}
