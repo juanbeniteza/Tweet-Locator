@@ -37,13 +37,12 @@ app.get("/rules", async (req, res) => {
 
   let rules = [];
 
-  console.log(TWITTER_TOKEN);
-
-  console.log(response.body);
   if (response.statusCode === 200) {
-    response.body.data.forEach((rule) => {
-      rules.push(rule);
-    });
+    if (response.body.data) {
+      response.body.data.forEach((rule) => {
+        rules.push(rule);
+      });
+    }
 
     res.send(rules);
   } else {
