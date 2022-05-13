@@ -1,8 +1,13 @@
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import Toast from "react-bootstrap/Toast";
-import { DateTime } from "luxon";
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import Toast from 'react-bootstrap/Toast';
+import { DateTime } from 'luxon';
+import ObjectNames from './shared/interfaces/geo.interface';
 
-function Map(props) {
+interface Props {
+  tweets: ObjectNames[];
+}
+
+function Map(props: Props): ReturnType<React.FC> {
   const { tweets } = props;
 
   console.log(tweets);

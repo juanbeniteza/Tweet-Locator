@@ -1,7 +1,19 @@
-function Term(props) {
+interface SearchTerms {
+  value: string;
+  id: string;
+}
+
+interface Props {
+  term: string;
+  id: string;
+  onDelete: (id: string) => void;
+  searchTerms: SearchTerms[];
+}
+
+function Term(props: Props) {
   const { term, id, onDelete } = props;
 
-  const deleteTerm = (e) => {
+  const deleteTerm = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     console.log(id);
     onDelete(id);
@@ -17,7 +29,7 @@ function Term(props) {
   );
 }
 
-function SearchTerms(props) {
+function SearchTerms(props: Props) {
   const { searchTerms } = props;
   const { onDelete } = props;
 
@@ -30,6 +42,7 @@ function SearchTerms(props) {
             id={term.id}
             key={term.id}
             onDelete={onDelete}
+            searchTerms={[]}
           />
         ))}
       </div>

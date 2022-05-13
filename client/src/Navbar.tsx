@@ -1,8 +1,9 @@
-import Navbar from "react-bootstrap/Navbar";
-import Nav from "react-bootstrap/Nav";
-import Container from "react-bootstrap/Container";
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
+import Container from 'react-bootstrap/Container';
+import React from 'react';
 
-function MyNav() {
+function MyNav(): ReturnType<React.FC> {
   return (
     <Navbar bg="light">
       <Container>
