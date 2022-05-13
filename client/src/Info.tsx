@@ -1,17 +1,23 @@
-import SearchBar from "./SearchBar";
-import Tweet from "./Tweet";
-import SearchTerms from "./SearchTerms";
-import { useState, useEffect } from "react";
-import axios from "axios";
+import SearchBar from './SearchBar';
+import Tweet from './Tweet';
+import SearchTerms from './SearchTerms';
+import React, { useState, useEffect } from 'react';
+import ObjectNames from './shared/interfaces/geo.interface';
 
-function Info(props) {
+import axios from 'axios';
+
+interface Props {
+  tweets: ObjectNames[];
+}
+
+function Info(props: Props): ReturnType<React.FC> {
   const { tweets } = props;
 
   const [searchTerms, setSearchTerms] = useState([]);
 
   const getTerms = () => {
     axios
-      .get("http://localhost:3001/rules")
+      .get('http://localhost:3001/rules')
       .then((res) => {
         setSearchTerms(res.data);
       })
@@ -20,9 +26,9 @@ function Info(props) {
       });
   };
 
-  const createTerm = (term) => {
+  const createTerm = (term: string) => {
     axios
-      .post("http://localhost:3001/rules", {
+      .post('http://localhost:3001/rules', {
         rule: term,
       })
       .then((res) => {
@@ -33,9 +39,9 @@ function Info(props) {
       });
   };
 
-  const deleteTerm = (termId) => {
+  const deleteTerm = (termId: string) => {
     axios
-      .put("http://localhost:3001/rules", {
+      .put('http://localhost:3001/rules', {
         ruleIds: [termId],
       })
       .then((res) => {
@@ -53,7 +59,12 @@ function Info(props) {
   return (
     <div className="info">
       <SearchBar onSubmit={createTerm} />
-      <SearchTerms searchTerms={searchTerms} onDelete={deleteTerm} />
+      <SearchTerms
+        searchTerms={searchTerms}
+        onDelete={deleteTerm}
+        term={''}
+        id={''}
+      />
       <Tweet tweets={tweets} />
     </div>
   );
